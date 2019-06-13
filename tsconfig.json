@@ -1,0 +1,53 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "rootDir": "./src/",
+    "outDir": "./dist/",
+
+    "target": "es6",
+    "module": "commonjs",
+
+    "moduleResolution": "node",
+    "lib": [
+      "es2015",
+      "es2016",
+      "es2017",
+      "esnext"
+    ],
+
+    "strict": true,
+    "declaration": false,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "alwaysStrict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "inlineSourceMap": false,
+    "noErrorTruncation": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "preserveConstEnums": true,
+    "preserveWatchOutput": true,
+    "sourceMap": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true
+  },
+
+  "include": [
+    "./src/**/*"
+  ],
+
+  "exclude": [
+    "./node_modules",
+    "./dist"
+  ]
+}
