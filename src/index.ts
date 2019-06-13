@@ -6,33 +6,43 @@ import graphqlHTTP = require('express-graphql');
 
 const app = express();
 
-const MODULES = 40;
+const MODULES = 30;
+
+const AuthModule = new GraphQLModule({
+  name: 'AuthModule',
+  typeDefs: gql`
+    directive @access(roles: [String]) on FIELD_DEFINITION
+  `,
+});
+
+const BaseModule = new GraphQLModule({
+  name: 'BaseModule',
+  typeDefs: gql`
+        type Query {
+          test: Boolean @access(roles: ["Admin"])
+        }
+      `,
+  imports: [
+    AuthModule,
+  ]
+});
 
 const AppModule = new Array(MODULES)
   .fill(0)
   .reduce<GraphQLModule>(
-    (acc, _value, index) => {
+    (Module, _value, index) => {
       const name = `Module${index}`;
       console.log(name);
 
       return new GraphQLModule({
         name,
-        typeDefs: gql`
-        type Query {
-          test: Boolean @access(roles: ["Admin"])
-        }
-      `,
         imports: [
-          acc
+          BaseModule,
+          Module
         ],
       })
     },
-    new GraphQLModule({
-      name: 'AuthModule',
-      typeDefs: gql`
-        directive @access(roles: [String]) on FIELD_DEFINITION
-      `,
-    })
+    BaseModule
   );
 
 console.log(print(AppModule.typeDefs));
